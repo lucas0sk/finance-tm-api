@@ -1,0 +1,46 @@
+HELP.md
+
+# Maven
+target/
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+*.log
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.out/
+.DS_Store
+.vscode/
+
+# Build tools
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Spring Tool Suite
+.apt_generated
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Classes compiladas
+*.class
+
+# Arquivos temporários
+*.swp
+*.swo
+
+# Configurações locais
+.env
