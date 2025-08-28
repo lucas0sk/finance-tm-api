@@ -19,3 +19,11 @@ spring.h2.console:
 logging:
   level:
     org.hibernate.SQL: debug
+server:
+  error:
+    include-message: always
+security:
+  jwt:
+    secret: "6G7hYt9pQwEr4Tu8!ZxCvBnM2aSdFgHj"
+    issuer: "finance-api"
+    ttl-minutes: 60
