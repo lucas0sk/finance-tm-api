@@ -1,4 +1,4 @@
-package com.tokiomarine.finance.api.controller;
+package com.tokiomarine.finance.config;
 
 import com.tokiomarine.finance.domain.UserRole;
 import com.tokiomarine.finance.repository.AccountRepository;
@@ -32,7 +32,6 @@ public class DataSeeder implements CommandLineRunner {
         if (userRepository.findByUsername("admin").isEmpty()) {
             var admin = registrationService.register("Admin Tesouraria", "00000000000", "admin@local",
                     "admin", "admin123", UserRole.ADMIN);
-            // Credite saldo na conta admin para usar nas demos
             var acc = admin.getAccount();
             acc.setBalance(new BigDecimal("100000.00"));
             accountRepository.save(acc);

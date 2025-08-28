@@ -1,4 +1,4 @@
-package com.tokiomarine.finance.api.dto;
+package com.tokiomarine.finance.api.dto.request;
 
 import lombok.Data;
 

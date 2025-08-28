@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public interface TransferRepository extends JpaRepository<Transfer, Long> {
     Optional<Transfer> findByRequestId(String requestId);
+
     @Query("select t from Transfer t " +
             "where (:fromNumber is null or t.fromAccount.number = :fromNumber) " +
             "and (:toNumber   is null or t.toAccount.number   = :toNumber) " +
@@ -19,4 +20,14 @@ public interface TransferRepository extends JpaRepository<Transfer, Long> {
             "and (:startDate  is null or t.transferDate >= :startDate) " +
             "and (:endDate    is null or t.transferDate <= :endDate)")
     Page<Transfer> search(String fromNumber, String toNumber, TransferStatus status, LocalDate startDate, LocalDate endDate, Pageable pageable);
+
+    @Query("select t from Transfer t " +
+            "join fetch t.fromAccount fa " +
+            "join fetch t.toAccount ta " +
+            "where (fa.number = :account or ta.number = :account) " +
+            "and (:status is null or t.status = :status) " +
+            "and (:startDate is null or t.transferDate >= :startDate) " +
+            "and (:endDate is null or t.transferDate <= :endDate)")
+    Page<Transfer> searchByAccount(String account, TransferStatus status, LocalDate startDate, LocalDate endDate, Pageable pageable);
+
 }

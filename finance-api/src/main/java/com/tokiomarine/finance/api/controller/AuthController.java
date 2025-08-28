@@ -1,8 +1,8 @@
 package com.tokiomarine.finance.api.controller;
 
-import com.tokiomarine.finance.api.dto.AuthResponse;
-import com.tokiomarine.finance.api.dto.LoginRequest;
-import com.tokiomarine.finance.api.dto.RegisterRequest;
+import com.tokiomarine.finance.api.dto.response.AuthResponse;
+import com.tokiomarine.finance.api.dto.request.LoginRequest;
+import com.tokiomarine.finance.api.dto.request.RegisterRequest;
 import com.tokiomarine.finance.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
