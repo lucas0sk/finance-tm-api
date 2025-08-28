@@ -55,4 +55,10 @@ public class Transfer {
 
     @Column(nullable = false)
     private Instant createdAt;
+
+    @Column
+    private Instant executedAt;
+
+    @Column(length = 200)
+    private String failureReason;
 }

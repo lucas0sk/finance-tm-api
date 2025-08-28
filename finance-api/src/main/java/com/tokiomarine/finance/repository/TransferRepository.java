@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface TransferRepository extends JpaRepository<Transfer, Long> {
@@ -29,5 +30,12 @@ public interface TransferRepository extends JpaRepository<Transfer, Long> {
             "and (:startDate is null or t.transferDate >= :startDate) " +
             "and (:endDate is null or t.transferDate <= :endDate)")
     Page<Transfer> searchByAccount(String account, TransferStatus status, LocalDate startDate, LocalDate endDate, Pageable pageable);
+
+    @Query("select t from Transfer t " +
+            "join fetch t.fromAccount fa " +
+            "join fetch t.toAccount ta " +
+            "where t.status = com.tokiomarine.finance.domain.TransferStatus.PENDING " +
+            "and t.transferDate <= :today")
+    List<Transfer> findDue(LocalDate today);
 
 }
