@@ -49,7 +49,7 @@ public class AuthController {
         var user = registrationService.register(req.getFullName(), req.getCpf(), req.getEmail(), req.getUsername(), req.getPassword(), UserRole.USER);
 
         var token = generateToken(user.getUsername(), user.getRole().name());
-        return ResponseEntity.ok(new AuthResponse(token, user.getAccount().getNumber()));
+        return ResponseEntity.ok(new AuthResponse(token, user.getAccount().getNumber(), user.getRole().toString()));
     }
 
     @PostMapping("/login")
@@ -61,7 +61,7 @@ public class AuthController {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         var role = user.getRole().name();
         var token = generateToken(user.getUsername(), role);
-        return ResponseEntity.ok(new AuthResponse(token, user.getAccount().getNumber()));
+        return ResponseEntity.ok(new AuthResponse(token, user.getAccount().getNumber(), user.getRole().toString()));
     }
 
     private String generateToken(String username, String role) {

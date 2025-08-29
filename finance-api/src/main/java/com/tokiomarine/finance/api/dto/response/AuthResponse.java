@@ -6,4 +6,5 @@ import lombok.Value;
 public class AuthResponse {
     String accessToken;
     String accountNumber;
+    String userRole;
 }
