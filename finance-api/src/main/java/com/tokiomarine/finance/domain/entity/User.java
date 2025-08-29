@@ -12,7 +12,7 @@ import javax.validation.constraints.Email;
 @Setter
 @Entity
 @Table(
-        name = "user",
+        name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(name = "uk_user_username", columnNames = "username"),
                 @UniqueConstraint(name = "uk_user_email", columnNames = "email"),

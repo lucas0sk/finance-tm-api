@@ -1,6 +1,5 @@
 package com.tokiomarine.finance.repository;
 
-import com.tokiomarine.finance.domain.UserRole;
 import com.tokiomarine.finance.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,6 +9,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     boolean existsByEmail(String email);
     boolean existsByCpf(String cpf);
-    boolean hasRole(UserRole role);
 
 }
