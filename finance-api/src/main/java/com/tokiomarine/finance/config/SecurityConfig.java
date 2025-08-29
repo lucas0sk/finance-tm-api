@@ -68,7 +68,7 @@ public class SecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeHttpRequests(auth -> auth
-                .antMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/h2/**").permitAll()
+                .antMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             )
             .headers().frameOptions().sameOrigin()
