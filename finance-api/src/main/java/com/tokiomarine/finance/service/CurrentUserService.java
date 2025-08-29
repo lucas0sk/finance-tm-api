@@ -27,7 +27,10 @@ public class CurrentUserService {
         return u.getAccount().getNumber();
     }
 
-    public boolean hasRole(UserRole role){
-        return userRepository.hasRole(role);
+    public boolean hasRole(UserRole role) {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null) return false;
+        return auth.getAuthorities().stream()
+                .anyMatch(a -> a.getAuthority().equals("ROLE_" + role.name()));
     }
 }

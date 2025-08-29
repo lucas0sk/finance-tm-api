@@ -36,7 +36,6 @@ public class TransferController {
     }
 
     @PostMapping("/schedule")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<TransferResponse> schedule(@Valid @RequestBody ScheduleTransferRequest req) {
         String myAcc = currentUserService.accountNumber();
         boolean isAdmin = currentUserService.hasRole(UserRole.ADMIN);

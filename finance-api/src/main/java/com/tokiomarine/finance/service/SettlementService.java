@@ -49,7 +49,7 @@ public class SettlementService {
 
     @Transactional
     public int settleDue(LocalDate today) {
-        var due = transferRepository.findDue(today);
+        var due = transferRepository.findDue(TransferStatus.PENDING, today);
         int ok = 0;
         for (var t : due){
             try {
