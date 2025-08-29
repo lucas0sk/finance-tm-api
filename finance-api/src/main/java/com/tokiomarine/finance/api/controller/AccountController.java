@@ -1,8 +1,10 @@
 package com.tokiomarine.finance.api.controller;
 
+import com.tokiomarine.finance.api.dto.response.AccountSummaryResponse;
 import com.tokiomarine.finance.repository.UserRepository;
 import com.tokiomarine.finance.service.CurrentUserService;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +24,10 @@ public class AccountController {
     }
 
     @GetMapping("/me")
-    public Map<String,Object> me() {
-        var u = userRepository.findByUsername(currentUserService.username()).orElseThrow();
+    public ResponseEntity<AccountSummaryResponse> me() {
+        var u = userRepository.findByUsername(currentUserService.username())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         var acc = u.getAccount();
-        return Map.of("accountNumber", acc.getNumber(),"balance", acc.getBalance());
+        return ResponseEntity.ok(new AccountSummaryResponse(acc.getNumber(), acc.getBalance()));
     }
 }
